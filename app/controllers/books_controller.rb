@@ -20,10 +20,14 @@ class BooksController < ApplicationController
 
  #投稿画像詳細表示画面作成
  def show
+  @book = Book.find(params[:id])
  end
 
  #投稿画像を削除する
  def destroy
+  @book = Book.find(params[:id])
+  @book.destroy
+    redirect_to bookes_path
  end
  
 # 投稿データのストロングパラメータ

@@ -6,6 +6,9 @@ class User < ApplicationRecord
   
   #book model relation       
   has_many :books, dependent: :destroy
+  
+  #refile使用のため
+  attachment :profile_image
 end
 
 #:database_authenticatable（パスワードの正確性を検証）

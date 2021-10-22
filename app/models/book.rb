@@ -1,5 +1,5 @@
 class Book < ApplicationRecord
   
-  #user model relat
+  #user model relation
   belongs_to :user
 end

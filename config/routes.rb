@@ -7,4 +7,5 @@ Rails.application.routes.draw do
 
   resources :books, only: [:new, :create, :index, :show, :destroy]
   #only:生成ルーティング限定
+  resources :users, only: [:show, :edit, :update]
 end
