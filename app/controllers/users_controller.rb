@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   #User詳細表示画面作成
   def show
     @user = User.find(params[:id])
-    @books = @user.books.page(params[:page]).reverse_order
+    @books = @user.books
   end
   
   #投稿リストを表示画面作成

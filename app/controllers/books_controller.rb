@@ -9,8 +9,13 @@ class BooksController < ApplicationController
  def create
  @book = Book.new(book_params)
  @book.user_id = current_user.id
- @book.save
- redirect_to books_path
+ 
+ #falseならば、画像投稿ページを再表示
+  if @book.save
+   redirect_to books_path
+  else
+   render :new
+  end
  end
  
  #投稿リストを表示画面作成
