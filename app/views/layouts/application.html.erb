@@ -10,30 +10,55 @@
   </head>
 
   <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+     
+
     <!--Log out 機能追加-->
         <% if user_signed_in? %><!--After log in -->
-        
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+         <%= link_to 'Home', root_path %>
+
       <li>
-        <%= link_to '投稿フォーム', new_book_path %>
+        <%= link_to, user_path(current_user.id) do %><i class="fas fa-home">Home</i><% end %>
       </li>
-      
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+
+       <li>
+      <%= link_to, user_path(current_user.id) do %><i class="fas fa-users">Users</i><% end %><!--変更必要-->
       </li>
-      
+
       <li>
-      <%= link_to 'マイページ', user_path(current_user.id) %>
-    </li>
-      
-      
+      <%= link_to, books_path do %><i class="fas fa-book-open">Books</i><% end %>
+      </li>
+
+      <li>
+       
+      </li>
+
     <% else %><!--Before log in -->
       <li>
-        <%= link_to "新規登録", new_user_registration_path %>
+        <%= link_to, root_path do %><i class="fas fa-home">Home</i><% end %>
       </li>
+
       <li>
-        <%= link_to "ログイン", new_user_session_path %>
+        <%= link_to, new_user_registration_path do %><i class="fas fa-link"></i>About</i><% end %><!--変更必要-->
       </li>
+
+      <li>
+        <%= link_to, new_user_registration_path do %><i class="fas fa-user-plus">Sign up</i><% end %>
+      </li>
+
+      <li>
+        <%= link_to, new_user_session_path do %><i class="fas fa-sign-in-alt">Log in</i><% end %>
+      </li>
+      </ul>
+      </div>
+      </div>
     <% end %>
+    </header>
     <%= yield %>
   </body>
 </html>
