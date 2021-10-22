@@ -1,0 +1,9 @@
+<% @books.each do |book| %><!--コントローラから渡された@books変数内から1つずつ取り出して、post_image変数へ格納-->
+<div>
+ 
+  <p><%= image_tag('no_image.jpg') %></p> 
+  <p><%= book.title %></p><!--book変数のtitleカラム(bookモデルに定義)-->
+  <p><%= book.body %></p>
+  <p><%= book.user.name %></p>
+</div>
+<% end %>
