@@ -1,15 +1,8 @@
 <!--User page-->
 
 <!--ユーザのプロフィールを、ページ上部に記述-->
-<div>
-  <h3><%= @user.name %></h3>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  
-  <% if @user.id == current_user.id %>
-  <p><%= link_to "編集(後でアイコンになる", edit_user_path(@user) %></p>
-  <% end %>
-</div>
-
+<%= render 'users/user_info', users: @user %>
+<%= render ' books/post_book',books: @new_book %>
 
 <% @books.each do |book| %><!--コントローラから渡された@books変数内から1つずつ取り出して、post_image変数へ格納-->
 <div>

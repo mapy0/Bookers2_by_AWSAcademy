@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   #User詳細表示画面作成
   def show
     @user = User.find(params[:id])
+    @user = current_user #User部分テンプレート
   end
   
   #投稿リストを表示画面作成
@@ -20,11 +21,12 @@ class UsersController < ApplicationController
   #User一覧表示
   def index
     @users = User.all
+    @user = current_user #User情報部分テンプレート
+    @new_book = Book.new #Book投稿部分テンプレート
   end
   
 end
 
-#
 private
 
 def user_params

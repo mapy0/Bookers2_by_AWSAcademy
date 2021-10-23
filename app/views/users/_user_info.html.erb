@@ -1,9 +1,26 @@
-<!--ユーザのプロフィールを、ページ上部に記述　部分テンプレート-- >
-<div>
-  <h3><%= @user.name %></h3>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  
-  <% if @user.id == current_user.id %>
-  <p><%= link_to "編集(後でアイコンになる", edit_user_path(@user) %></p>
-  <% end %>
-</div>
+<!--ユーザのプロフィールを、ページ上部に記述　部分テンプレート-->
+ <h2>User info</h2>
+  <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+ <table class="table">
+  <tbody>
+
+    <tr></tr>
+    <tr>
+    <th>name</th><th><%= user.name %></th>
+    </tr>
+
+    <tr>
+    <th>introduction</th><th><%= user.introduction%></th>
+    </tr>
+
+  </tbody>
+  </table>
+
+  <div class="row">
+  　<% if user.id == current_user.id %>
+  　<div class="btn btn-sm btn-block border-dark mb-3">
+  　<%= link_to  edit_user_path(user) do%><i class="fas fa-user-cog" style="color: darkgray;"></i>
+  　<% end %>
+  　<% end %>
+  　</div>
+  </div>

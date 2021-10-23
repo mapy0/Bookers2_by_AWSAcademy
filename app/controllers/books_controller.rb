@@ -21,11 +21,15 @@ class BooksController < ApplicationController
  #投稿リストを表示画面作成
  def index
   @books = Book.all
+  @new_book = Book.new #投稿の部分テンプレート
+  @user = current_user #user情報の部分テンプレート
  end
 
  #投稿画像詳細表示画面作成
  def show
   @book = Book.find(params[:id])
+  @new_book = Book.new #投稿の部分テンプレート
+  @user = current_user #user情報の部分テンプレート
  end
 
  #投稿画像を削除する
