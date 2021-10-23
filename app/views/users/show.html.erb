@@ -1,15 +1,37 @@
 <!--User page-->
 
-<!--ユーザのプロフィールを、ページ上部に記述-->
+<div class="container px-5 px-sm-0">
+ <div class="row">
+   
+   <div class="col-md-3"><!--部分テンプレート全体-->
 <%= render 'users/user_info', users: @user %>
 <%= render ' books/post_book',books: @new_book %>
+   </div>
 
+
+<div class="col-md-8 offset-md-1"><!--User page全体-->
+<h2>Users</h2>
+ <table>class="table"
+  <thead>
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  
+  <tbody>
 <% @books.each do |book| %><!--コントローラから渡された@books変数内から1つずつ取り出して、post_image変数へ格納-->
-<div>
- 
+ <div>
    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %> <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
   <p><%= book.title %></p><!--book変数のtitleカラム(bookモデルに定義)-->
   <p><%= book.body %></p>
   <p><%= book.user.name %></p>
-</div>
+ </div>
 <% end %>
+  </tbody>
+ </table>
+ </div>
+ 
+ </div>
+</div>
