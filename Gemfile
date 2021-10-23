@@ -68,7 +68,7 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 #画像のリサイズを行える
 gem "refile-mini_magick"
 
-#
+#css fontawsone
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
