@@ -26,16 +26,20 @@
       <ul class="nav navbar-nav ml-auto">
         
         <% if user_signed_in? %><!--After log in -->
-         <li><%= link_to 'Home', root_path %></li>
-
       <li>
-        <%= link_to user_path(current_user.id) do%>
-        <span><i class="fas fa-home"></i>Home</span><% end %>
+        <%= link_to user_path(current_user.id) do%><i class="fas fa-home nav-link text-light">Home</i><% end %>
       </li>
-
+      
       <li>
-      <%= link_to books_path do %>
-      <span><i class="fas fa-book-open"></i>Book</span><% end %>
+      <%= link_to books_path do %><i class="fas fa-users nav-link text-light">Users</i><% end %><!--link change-->
+      </li>
+    
+      <li>
+      <%= link_to books_path do %><i class="fas fa-book-open nav-link text-light">Books</i><% end %>
+      </li>
+      
+      <li>
+      <%= link_to destroy_user_session_path, method: :delete do %><i class="fas fa-sign-out-alt nav-link text-light">Log out</i><% end %>
       </li>
 
     <% else %><!--Before log in -->
