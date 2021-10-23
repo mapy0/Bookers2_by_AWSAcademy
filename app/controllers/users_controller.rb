@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user = current_user #User部分テンプレート
+    @new_book = Book.new #Book投稿部分テンプレート
+
   end
   
   #投稿リストを表示画面作成
