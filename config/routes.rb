@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get 'about_page/about'
 
   resources :books, only: [:new, :create, :index, :show, :destroy]
-  resources :users, only: [:show, :edit, :update]#only:生成ルーティング限定
+  resources :users, only: [:show, :edit, :update, :index]#only:生成ルーティング限定
 end
