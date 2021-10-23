@@ -6,11 +6,19 @@
     <%= render 'books/post_book', books: @new_book %>
     </div>
 
-<div>
-  <p><%= @book.title %></p>
-  <p><%= @book.body %></p>
-  <p><%= @book.user.name %></p>
+<div class="col-md-8 offset-md-1"><!--User page全体-->
+<h2>Book detail</h2>
+ <table class="table">
+  
+  <tbody>
+  <tr>
+  <td><%= @book.title %></td>
+  <td><%= @book.body %></td>
+  <td><%= @book.user.name %></td>
+  <
+  
   <% if @book.user == current_user %>
-  <%= link_to "Delete", book_path(@book), method: :delete %>
+  <%= link_to "Edit", book_path(@book), method: :delete %> <!--要変更-->
+  <%= link_to "Destroy", book_path(@book), method: :delete %>
   <% end %>
 </div>

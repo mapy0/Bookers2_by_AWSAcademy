@@ -22,10 +22,11 @@
   
   <tbody>  
 <% @books.each do |book| %><!--コントローラから渡された@books変数内から1つずつ取り出して、post_image変数へ格納-->
-  <td><%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %></td>
+  <td><%= attachment_image_tag book.user, :profile_image, :fill, 30, 30, fallback: "no_image.jpg" %></td>
   <%= link_to book_path(book.id) do %>
   <td><%= book.title %></td><!--book変数のtitleカラム(bookモデルに定義)-->
   <% end %>
+  
   <td><%= book.body %></td>
   </tbody> 
 </div>
