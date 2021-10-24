@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   #投稿リストを表示画面作成
   def edit
    @user = User.find(params[:id])
+    if @user== current_user
+      render "edit"
+    else
+      redirect_to show
+    end
   end
   
   #編集データの保存機能
@@ -33,5 +38,5 @@ end
 private
 
 def user_params
-  params.require(:user).permit(:name, :profile_image)
+  params.require(:user).permit(:name, :profile_image, :introduction)
 end
