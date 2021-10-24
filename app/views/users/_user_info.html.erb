@@ -16,8 +16,8 @@
   </tbody>
   </table>
 
-  <div class="row">
+  <div>
   　<% if user.id == current_user.id %>
-  　<%= link_to edit_user_path(current_user) do%><i class="fas fa-user-cog btn btn-sm btn-block border-dark mb-3 style="color: darkgray;"></i><% end %>
+  　<%= link_to edit_user_path(current_user) do%><i class="btn btn-lg btn-block border-dark fas fa-user-cog" style="color: darkgray;"></i><% end %>
   　<% end %>
   </div>
