@@ -40,7 +40,7 @@ class BooksController < ApplicationController
  def destroy
   @book = Book.find(params[:id])
   @book.destroy
-    redirect_to bookes_path
+    redirect_to books_path
  end
  
  #投稿編集
@@ -50,10 +50,10 @@ class BooksController < ApplicationController
   
    def update
      @book = Book.find(params[:id])
-    if @book.update(post_params)
-      redirect_to request.referer
+    if @book.update(book_params)
+      redirect_to books_path(@book.id)
     else
-      render :new
+      render :edit
     end
    end
    
