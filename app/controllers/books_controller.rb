@@ -25,20 +25,34 @@ class BooksController < ApplicationController
   @user = current_user #user情報の部分テンプレート
  end
 
- #投稿画像詳細表示画面作成
+ #投稿詳細表示画面作成
  def show
   @book = Book.find(params[:id])
   @new_book = Book.new #投稿の部分テンプレート
   @user = current_user #user情報の部分テンプレート
  end
 
- #投稿画像を削除する
+ #投稿削除
  def destroy
   @book = Book.find(params[:id])
   @book.destroy
     redirect_to bookes_path
  end
  
+ #投稿編集
+  def edit
+    @book = Book.find(params[:id])
+  end
+  
+   def update
+     @book = Book.find(params[:id])
+    if @book.update(post_params)
+      redirect_to request.referer
+    else
+      render :new
+    end
+   end
+   
 # 投稿データのストロングパラメータ
 private
 

@@ -15,10 +15,10 @@
   <td><%= @book.title %></td>
   <td><%= @book.body %></td>
   <td><%= @book.user.name %></td>
-  <
+  
   
   <% if @book.user == current_user %>
-  <%= link_to "Edit", book_path(@book), method: :delete %> <!--要変更-->
+  <%= link_to "Edit", edit_book_path(@book) %> <!--要変更-->
   <%= link_to "Destroy", book_path(@book), method: :delete %>
   <% end %>
 </div>

@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   #About page Root
   get 'about_page/about'
 
-  resources :books, only: [:new, :create, :index, :show, :destroy]
+  resources :books, only: [:new, :create, :index, :show, :destroy, :edit, :update]
   resources :users, only: [:show, :edit, :update, :index]#only:生成ルーティング限定
 end
