@@ -6,7 +6,6 @@ class UsersController < ApplicationController
     @users = current_user #User部分テンプレート
     @new_book = Book.new #Book投稿部分テンプレート
     @books = Book.where(user_id: @user.id)
-
   end
   
   #投稿リストを表示画面作成
@@ -22,9 +21,14 @@ class UsersController < ApplicationController
   #編集データの保存機能
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
+   if  @user.update(user_params)
+    flash[:notice]="You have updated user successfully."
     redirect_to user_path(@user.id)
+   else
+     render "edit"
+   end
   end
+  
   
   #User一覧表示
   def index
@@ -34,6 +38,7 @@ class UsersController < ApplicationController
   end
   
 end
+
 
 private
 
