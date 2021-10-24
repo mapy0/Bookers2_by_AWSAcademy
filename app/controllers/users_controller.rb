@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = current_user #User部分テンプレート
     @new_book = Book.new #Book投稿部分テンプレート
+    @books = Book.where(user_id: @user.id)
 
   end
   
