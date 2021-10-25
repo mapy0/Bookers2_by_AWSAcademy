@@ -40,7 +40,10 @@ before_action :correct_user,   only: [:edit, :delete]
 
  #投稿編集
   def edit
-    
+   @book = Book.find(params[:id])
+   if @book.user == current_user
+   render "edit"
+   end
   end
 
    def update
@@ -50,7 +53,7 @@ before_action :correct_user,   only: [:edit, :delete]
        flash[:notice]="Book was successfully updated."
        redirect_to book_path(@book.id)
       else
-       render "show"
+       render "edit"
       end
    end
 
@@ -60,7 +63,7 @@ private
 def book_params
  params.require(:book).permit(:title, :body)
 end
- 
+
   def correct_user
     @book = current_user.books.find_by(id: params[:id])
     # redirect_to(root_path) unless @book

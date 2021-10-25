@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   #ログイン後は投稿一覧画面に遷移
   def after_sign_in_path_for(resource)
-    books_path
+    user_path(current_user)
   end
 
   protected

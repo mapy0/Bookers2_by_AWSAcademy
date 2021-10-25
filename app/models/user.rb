@@ -3,20 +3,20 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-  #book model relation       
+
+  #book model relation
   has_many :books, dependent: :destroy
-  
+
   #refile使用のため
   attachment :profile_image
-  
+
   #バリテーションエラー
-  validates :name, uniqueness: true, length: {minimum:2, maximum: 20 }
-  
+  validates :name, presence: true, uniqueness: true, length: {minimum:2, maximum: 20 }
+
   validates :introduction, length: {maximum: 50 }
-  
-  
-  
+
+
+
 end
 
 #:database_authenticatable（パスワードの正確性を検証）
