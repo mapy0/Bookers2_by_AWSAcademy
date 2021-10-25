@@ -1,17 +1,4 @@
 <!--部分テンプレート 投稿Fmt-->
-
-<% if book.errors.any? %>
-     <div id="error_explanation">
-       <h2><%= pluralize(book.errors.count, "error") %> errors prohibited this obj from being saved:</h2>
-       <ul>
-       <% book.errors.full_messages.each do |message| %>
-         <li><%= message %></li>
-       <% end %>
-       </ul>
-     </div>
-     <% end %>
-
-
 <h2 class="mt-3">New book</h2>
 <%= form_with model: book, local:true do |f| %>
 

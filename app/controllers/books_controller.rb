@@ -1,27 +1,22 @@
 class BooksController < ApplicationController
- 
- #新規投稿画面表示
- def new
- @book = Book.new
- end
- 
+before_action :correct_user,   only: [:edit, :delete]
+
+
  #投稿内容保存
  def create
- @book = Book.new(book_params)
- @book.user_id = current_user.id
- #falseならば、画像投稿ページを再表示
-  if @book.save
+ @new_book = Book.new(book_params)
+ @new_book.user_id = current_user.id
+ #falseならば、showページを再表示
+  if @new_book.save
     flash[:notice]="You have creatad book successfully."
-   redirect_to books_path
+   redirect_to book_path(@new_book.id)
   else
-   @user = current_user
+   @user = current_user #user情報の部分テンプレート
    @books = Book.all
-   render :show
+   render :index
   end
  end
- 
- 
- 
+
  #投稿リストを表示画面作成
  def index
   @books = Book.all
@@ -42,34 +37,33 @@ class BooksController < ApplicationController
   @book.destroy
     redirect_to books_path
  end
- 
+
  #投稿編集
   def edit
-    @book = Book.find(params[:id])
-     if @book.user == current_user
-      render "edit"
-     else
-      redirect_to books_path
-     end
+    
   end
-  
+
    def update
      @book = Book.find(params[:id])
      @book.user_id = current_user.id
-    if @book.update(post_params)
-     flash[:notice]="Book was successfully updated."
-      redirect_to book_path(@book.id)
-    else
-      render :edit
-    end
+      if @book.update(book_params)
+       flash[:notice]="Book was successfully updated."
+       redirect_to book_path(@book.id)
+      else
+       render "show"
+      end
    end
-   
+
 # 投稿データのストロングパラメータ
 private
 
 def book_params
  params.require(:book).permit(:title, :body)
 end
-
+ 
+  def correct_user
+    @book = current_user.books.find_by(id: params[:id])
+    # redirect_to(root_path) unless @book
+  end
 
 end
