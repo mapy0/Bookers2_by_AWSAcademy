@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-before_action :correct_user,   only: [:edit, :delete]
+# before_action :correct_user,   only: [:edit, :delete]
 
 
  #投稿内容保存
@@ -28,7 +28,7 @@ before_action :correct_user,   only: [:edit, :delete]
  def show
   @book = Book.find(params[:id])
   @new_book = Book.new #投稿の部分テンプレート
-  @user = current_user #user情報の部分テンプレート
+  @user = @book.user #user情報の部分テンプレート
  end
 
  #投稿削除
@@ -42,7 +42,9 @@ before_action :correct_user,   only: [:edit, :delete]
   def edit
    @book = Book.find(params[:id])
    if @book.user == current_user
-   render "edit"
+    render "edit"
+   else
+    redirect_to books_path
    end
   end
 
@@ -64,9 +66,9 @@ def book_params
  params.require(:book).permit(:title, :body)
 end
 
-  def correct_user
-    @book = current_user.books.find_by(id: params[:id])
-    # redirect_to(root_path) unless @book
-  end
+  # def correct_user
+  #   @book = current_user.books.find_by(id: params[:id])
+  #   # redirect_to(root_path) unless @book
+  # end
 
 end
