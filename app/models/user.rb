@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   #book model relation
   has_many :books, dependent: :destroy
+  #book_comment model relation
+  has_many :book_comments, dependent: :destroy
+  #favorite model relation
+  has_many :favorites, dependent: :destroy
 
   #refile使用のため
   attachment :profile_image

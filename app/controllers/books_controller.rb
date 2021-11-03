@@ -29,6 +29,7 @@ class BooksController < ApplicationController
   @book = Book.find(params[:id])
   @new_book = Book.new #投稿の部分テンプレート
   @user = @book.user #user情報の部分テンプレート
+  @book_comment = BookComment.new #コメントのインスタンス変数
  end
 
  #投稿削除
