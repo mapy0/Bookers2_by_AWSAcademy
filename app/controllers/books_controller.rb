@@ -22,7 +22,6 @@ class BooksController < ApplicationController
   @books = Book.all
   @new_book = Book.new #投稿の部分テンプレート
   @user = current_user #user情報の部分テンプレート
-  @book = Book.all
  end
  
 
