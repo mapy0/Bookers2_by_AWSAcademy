@@ -29,7 +29,7 @@ class User < ApplicationRecord
   #フォローしているかを確認するメソッド
   #followed_relationshipsテーブルのfollowed_idにuserのidが存在するか確認。あればtrueを返す。ここ違う？
   def followed?(user)
-    followed_relationships.find_by(followed_id: user)
+    follower_relationships.find_by(followed_id: user)
   end
   # こう？
   # def folloed?(user)
@@ -39,13 +39,13 @@ class User < ApplicationRecord
   #フォローするときのメソッド
   #このメソッドが呼び出されたときには、followed_idにuser.idを代入。
   def follow(user)
-    followed_relationships.create!(following_id: user.id) #!の意味？
+    follower_relationships.create!(followed_id: user.id) #!の意味？
   end
 
   #フォローを外すときのメソッド
   #このメソッドが呼び出されたときには、followed_idのuser.idを削除。
   def unfollow(user) #(user_id)?
-    followed_relationships.find_by(following_id: user.id).destroy
+    follower_relationships.find_by(followed_id: user.to_i).destroy
   end
 
 

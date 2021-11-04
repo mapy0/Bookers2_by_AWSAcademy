@@ -1,6 +1,8 @@
 class RelationshipsController < ApplicationController
   def create
-   current_user.follow(params[:user_id])
+   user = User.find(params[:user_id])
+   current_user.follow(user)
+   #current_user.follow(params[:user_id])
    redirect_to request.referer
   end
 
@@ -8,6 +10,6 @@ class RelationshipsController < ApplicationController
    current_user.unfollow(params[:user_id])
    redirect_to request.referer
   end
-  
+
   #followとunfollowは、Userモデルのメソッドを呼び出し
 end

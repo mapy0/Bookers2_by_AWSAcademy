@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @users = current_user #User部分テンプレート
     @new_book = Book.new #Book投稿部分テンプレート
     @books = Book.where(user_id: @user.id)
-
   end
 
   #投稿リストを表示画面作成
