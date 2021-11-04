@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
- before_action :correct_user,   only: [:edit, :update]  
+ before_action :correct_user,   only: [:edit, :update]
 
   #User詳細表示画面作成
   def show
@@ -7,9 +7,9 @@ class UsersController < ApplicationController
     @users = current_user #User部分テンプレート
     @new_book = Book.new #Book投稿部分テンプレート
     @books = Book.where(user_id: @user.id)
-    
+
   end
-  
+
   #投稿リストを表示画面作成
   def edit
     #@user = User.find(params[:id])
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user.id)
     end
   end
-  
+
   #編集データの保存機能
   def update
     @user = User.find(params[:id])
@@ -33,31 +33,31 @@ class UsersController < ApplicationController
      render "edit"
    end
   end
-  
-  
+
+
   #User一覧表示
   def index
     @users = User.all
     @user = current_user #User情報部分テンプレート
     @new_book = Book.new #Book投稿部分テンプレート
-    @followed_users = @user.followed_user
-    @follower_users = @user.follower_user
+    @followed = @user.followeds
+    @follower = @user.followers
   end
-  
-  
+
+
   def followeds
     user = User.find(params[:id]) #@user?
-    @users = user.followed_user.page(params[:page]).per(3).reverse_order
+    @users = user.followeds
   end
 
   def followers
     user = User.find(params[:id])
-    @users = user.follower_user.page(params[:page]).per(3).reverse_order
+    @users = user.followers
   end
-  
-  
-  
-  
+
+
+
+
 end
 
 
