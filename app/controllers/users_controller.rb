@@ -41,6 +41,20 @@ class UsersController < ApplicationController
     @new_book = Book.new #Book投稿部分テンプレート
   end
   
+  
+  def followeds
+    user = User.find(params[:id]) #@user?
+    @users = user.followed_user.page(params[:page]).per(3).reverse_order
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @users = user.follower_user.page(params[:page]).per(3).reverse_order
+  end
+  
+  
+  
+  
 end
 
 

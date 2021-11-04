@@ -15,6 +15,13 @@ Rails.application.routes.draw do
     #resource(単数)に注目。単数にすると、そのコントローラのidがリクエストに含まれなくなる。いいねの詳細ページ(=favoritesのshowページ)が不要で、idの受け渡しも必要ないので、resourceとなる。
     resources :book_comments, only: [:create, :destroy]
     end
-    
-  resources :users, only: [:show, :edit, :update, :index]#only:生成ルーティング限定
+  #only:生成ルーティング限定  
+  resources :users, only: [:show, :edit, :update, :index]do #followにはuserのidが必要なためrelationshipsをネスト
+      member do #resourcesは7つのルーティングを行ってるが、memberを用いて別のルーティングを追加。
+          get :followed, :followers #follow機能フォローユーザーとフォロワーを取れる(GET)。
+      end
+  end
+  resources :relationships, only: [:create, :destroy]
+  
+  
 end
