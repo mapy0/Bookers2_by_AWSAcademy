@@ -16,6 +16,6 @@ class Book < ApplicationRecord
 
   #book投稿バリテーション
   validates :title, presence: true
-  validates :body, length: { minimum: 1, maxim#um: 200 }#文字数は、1文字から200文字まで
+  validates :body, length: { minimum: 1, maximum: 200 }#文字数は、1文字から200文字まで
 
 end
