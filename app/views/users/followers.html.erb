@@ -5,6 +5,11 @@
     <div class="col-md-8 offset-md-1">
       <h2>Follower Users</h2>
 
+         <% if @users.empty? %>
+         <span>ユーザーはいません</span>
+
+         <% else%>
+
         <table class="table">
         <thead>
         <tr>
@@ -27,9 +32,9 @@
        <% end %>
     </tbody>
    </table>
-
-
+   <% end %>
       </div>
-    </div>
+
+  </div>
   </div>
   </div>
