@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   #only:生成ルーティング限定
   resources :users, only: [:show, :edit, :update, :index]do #followにはuserのidが必要なためrelationshipsをネスト
       member do #resourcesは7つのルーティングを行ってるが、memberを用いて別のルーティングを追加。
-          get :followed, :followers #follow機能フォローユーザーとフォロワーを取れる(GET)。
+          get :followeds, :followers #follow機能フォローユーザーとフォロワーを取れる(GET)。
       end
       resource :relationships, only: [:create, :destroy]
   end

@@ -18,34 +18,36 @@ class User < ApplicationRecord
 
   #through: :followed_relationshipsで、中間テーブルにfollowed_relationshipsテーブルを指定。
   #結果、user.followedと打つと、userが中間テーブルfollowed_relationships を取得、その1つ1つのfollowing_idから「フォローしているUser達」を取得できるようになる。
-   has_many :followeds, through: :followed_relationships, source: :followed
+   has_many :followeds, through: :followed_relationships, source: :follower
   #--------Followed---------------------------------------------
 
   #--------Follower---------------------------------------------
    has_many :follower_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
-   has_many :followers, through: :follower_relationships, source: :follower
+   has_many :followers, through: :follower_relationships, source: :followed
   #--------Follower---------------------------------------------
 
   #フォローしているかを確認するメソッド
-  #followed_relationshipsテーブルのfollowed_idにuserのidが存在するか確認。あればtrueを返す。ここ違う？
+  #followed_relationshipsテーブルのfollowed_idにuserのidが存在するか確認。あればuserを返す.なけれfalse
   def followed?(user)
-    follower_relationships.find_by(followed_id: user)
+    self.followed_relationships.find_by(follower_id: user.id)
   end
   # こう？
-  # def folloed?(user)
+  # def followed?(user)
   #   followed_user.include?(user)
   # end
 
   #フォローするときのメソッド
   #このメソッドが呼び出されたときには、followed_idにuser.idを代入。
   def follow(user)
-    follower_relationships.create!(followed_id: user.id) #!の意味？
+    return if user.id == self.id  or self.followed?(user)#self省略可
+   
+    self.followed_relationships.create!(follower_id: user.id) #!の意味？
   end
 
   #フォローを外すときのメソッド
   #このメソッドが呼び出されたときには、followed_idのuser.idを削除。
   def unfollow(user) #(user_id)?
-    follower_relationships.find_by(followed_id: user.to_i).destroy
+    followed_relationships.find_by(follower_id: user.to_i).destroy
   end
 
 
