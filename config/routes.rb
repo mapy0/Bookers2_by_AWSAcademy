@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   #About page Root
   get 'home/about' => 'homes#about'
-
+  #検索
+  get 'search' => 'searches#search'
   #投稿bookに対してコメントされるためbook_commentsは、booksにdoとendで親子に。
   resources :books, only: [:new, :create, :index, :show, :destroy, :edit, :update]do
     resource :favorites, only: [:create, :destroy]

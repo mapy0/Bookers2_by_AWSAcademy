@@ -17,5 +17,20 @@ class Book < ApplicationRecord
   #book投稿バリテーション
   validates :title, presence: true
   validates :body, length: { minimum: 1, maximum: 200 }#文字数は、1文字から200文字まで
+  
+  def self.search(word, search)
+    if search == "perfect_match"
+      @book = Book.where("title LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @book = Book.where("title LIKE?", "#{word}%")
+    elsif search == "backword_match"
+      @book = Book.where("title LIKE?", "%#{word}")
+    elsif search == "partial_match"
+      @book = Book.where("title LIKE?", "%#{word}%")
+    else
+      @book = Book.all
+  
+    end
+  end
 
 end
